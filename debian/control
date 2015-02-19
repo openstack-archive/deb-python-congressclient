@@ -1,5 +1,5 @@
 Source: python-congressclient
-Section: Python
+Section: python
 Priority: extra
 Maintainer: PKG OpenStack <openstack-devel@lists.alioth.debian.org>
 Uploaders: Thomas Goirand <zigo@debian.org>
