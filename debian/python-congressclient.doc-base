@@ -1,0 +1,9 @@
+Document: congressclient-doc
+Title: congressclient Documentation
+Author: N/A
+Abstract: Sphinx documentation for congressclient
+Section: Programming/Python
+
+Format: HTML
+Index: /usr/share/doc/python-congressclient/html/index.html
+Files: /usr/share/doc/python-congressclient/html/*

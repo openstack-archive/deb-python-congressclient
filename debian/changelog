@@ -1,0 +1,5 @@
+python-congressclient (1.0.2-1) unstable; urgency=medium
+
+  * Initial release. (Closes: #XXXXXX)
+
+ -- Thomas Goirand <zigo@debian.org>  Thu, 19 Feb 2015 19:36:19 +0100
