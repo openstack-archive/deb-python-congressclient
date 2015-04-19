@@ -2,31 +2,31 @@ Source: python-congressclient
 Section: python
 Priority: extra
 Maintainer: PKG OpenStack <openstack-devel@lists.alioth.debian.org>
-Uploaders: Thomas Goirand <zigo@debian.org>
+Uploaders: Thomas Goirand <zigo@debian.org>,
 Build-Depends: debhelper (>= 9),
                dh-python,
                openstack-pkg-tools,
                python-all,
                python-pbr,
                python-setuptools,
-               python-sphinx
-Build-Depends-Indep: python-babel (>= 1.3),
-                     python-cliff (>= 1.7.0),
-                     python-coverage (>= 3.6),
-                     python-fixtures (>= 0.3.14),
+               python-sphinx,
+Build-Depends-Indep: python-babel,
+                     python-cliff,
+                     python-coverage,
+                     python-fixtures,
                      python-hacking,
                      python-keystoneclient (>= 1:0.11.1),
-                     python-mock (>= 1.0),
-                     python-openstackclient (>= 0.3.0),
+                     python-mock,
+                     python-openstackclient,
                      python-oslo.i18n (>= 1.0.0),
                      python-oslosphinx (>= 2.2.0.0),
-                     python-requests (>= 2.2.0),
-                     python-six (>= 1.7.0),
-                     python-testscenarios (>= 0.4),
-                     python-testtools (>= 0.9.36),
-                     python-webob (>= 1.2.3),
-                     subunit (>= 0.0.18),
-                     testrepository (>= 0.0.18)
+                     python-requests,
+                     python-six,
+                     python-testscenarios,
+                     python-testtools,
+                     python-webob,
+                     subunit,
+                     testrepository,
 Standards-Version: 3.9.6
 Vcs-Browser: http://anonscm.debian.org/gitweb/?p=openstack/python-congressclient.git
 Vcs-Git: git://anonscm.debian.org/openstack/python-congressclient.git
@@ -34,16 +34,16 @@ Homepage: https://github.com/stackforge/python-congressclient
 
 Package: python-congressclient
 Architecture: all
-Depends: python-six (>= 1.7.0),
-         python-babel (>= 1.3),
-         python-cliff (>= 1.7.0),
+Depends: python-babel,
+         python-cliff,
          python-keystoneclient (>= 1:0.11.1),
-         python-openstackclient (>= 0.3.0),
+         python-openstackclient,
          python-oslo.i18n (>= 1.0.0),
-         python-pbr (>=0.6),
-         python-requests (>= 2.2.0),
+         python-pbr,
+         python-requests,
+         python-six,
          ${misc:Depends},
-         ${python:Depends}
+         ${python:Depends},
 Description: client for the open policy framework for the cloud - Python 2.x
  Congress is an open policy framework for the cloud. With Congress, a cloud
  operator can declare, monitor, enforce, and audit "policy" in a heterogeneous
