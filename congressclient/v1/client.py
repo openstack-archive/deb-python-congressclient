@@ -39,17 +39,22 @@ class Client(object):
     policy_rules = '/v1/policies/%s/rules'
     policy_rules_path = '/v1/policies/%s/rules/%s'
     policy_tables = '/v1/policies/%s/tables'
+    policy_table_path = '/v1/policies/%s/tables/%s'
     policy_rows = '/v1/policies/%s/tables/%s/rows'
     policy_rows_trace = '/v1/policies/%s/tables/%s/rows?trace=True'
     policy_rules = '/v1/policies/%s/rules'
     policies = '/v1/policies'
     policy_action = '/v1/policies/%s?%s'
     datasources = '/v1/data-sources'
+    datasource_path = '/v1/data-sources/%s'
     datasource_tables = '/v1/data-sources/%s/tables'
+    datasource_table_path = '/v1/data-sources/%s/tables/%s'
     datasource_status = '/v1/data-sources/%s/status'
     datasource_schema = '/v1/data-sources/%s/schema'
     datasource_table_schema = '/v1/data-sources/%s/tables/%s/spec'
     datasource_rows = '/v1/data-sources/%s/tables/%s/rows'
+    driver = '/v1/system/drivers'
+    driver_path = '/v1/system/drivers/%s'
 
     def __init__(self, **kwargs):
         super(Client, self).__init__()
@@ -113,6 +118,11 @@ class Client(object):
             (self.policy_path % policy_name) + str(uri), body=body)
         return body
 
+    def show_policy_table(self, policy_name, table_id):
+        resp, body = self.httpclient.get(self.policy_table_path %
+                                         (policy_name, table_id))
+        return body
+
     def list_datasources(self):
         resp, body = self.httpclient.get(self.datasources)
         return body
@@ -140,4 +150,34 @@ class Client(object):
     def show_datasource_table_schema(self, datasource_name, table_name):
         resp, body = self.httpclient.get(self.datasource_table_schema %
                                          (datasource_name, table_name))
+        return body
+
+    def show_datasource_table(self, datasource_name, table_id):
+        resp, body = self.httpclient.get(self.datasource_table_path %
+                                         (datasource_name, table_id))
+        return body
+
+    def create_datasource(self, body=None):
+        resp, body = self.httpclient.post(
+            self.datasources, body=body)
+        return body
+
+    def delete_datasource(self, datasource):
+        resp, body = self.httpclient.delete(
+            self.datasource_path % datasource)
+        return body
+
+    def execute_datasource_action(self, service_name, action, body):
+        uri = "?action=%s" % (action)
+        resp, body = self.httpclient.post(
+            (self.datasource_path % service_name) + str(uri), body=body)
+        return body
+
+    def list_drivers(self):
+        resp, body = self.httpclient.get(self.driver)
+        return body
+
+    def show_driver(self, driver):
+        resp, body = self.httpclient.get(self.driver_path %
+                                         (driver))
         return body
