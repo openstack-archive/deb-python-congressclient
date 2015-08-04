@@ -1,3 +1,11 @@
+python-congressclient (1.1.0-1) unstable; urgency=medium
+
+  * Update to the latest version.
+  * Upload to liberty.
+  * Update dependencies.
+
+ -- Ivan Udovichenko <iudovichenko@mirantis.com>  Tue, 04 Aug 2015 11:15:33 +0300
+
 python-congressclient (1.0.2-2) unstable; urgency=medium
 
   * Uploading to unstable.
