@@ -1,6 +1,7 @@
 python-congressclient (1.2.0-1) unstable; urgency=medium
 
   * New upstream release.
+  * Fixed (build-)depends for this release.
 
  -- Thomas Goirand <zigo@debian.org>  Thu, 10 Dec 2015 22:26:10 +0100
 
