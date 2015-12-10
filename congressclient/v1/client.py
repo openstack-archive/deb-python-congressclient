@@ -42,7 +42,6 @@ class Client(object):
     policy_table_path = '/v1/policies/%s/tables/%s'
     policy_rows = '/v1/policies/%s/tables/%s/rows'
     policy_rows_trace = '/v1/policies/%s/tables/%s/rows?trace=True'
-    policy_rules = '/v1/policies/%s/rules'
     policies = '/v1/policies'
     policy_action = '/v1/policies/%s?%s'
     datasources = '/v1/data-sources'
@@ -50,11 +49,13 @@ class Client(object):
     datasource_tables = '/v1/data-sources/%s/tables'
     datasource_table_path = '/v1/data-sources/%s/tables/%s'
     datasource_status = '/v1/data-sources/%s/status'
+    datasource_actions = '/v1/data-sources/%s/actions'
     datasource_schema = '/v1/data-sources/%s/schema'
     datasource_table_schema = '/v1/data-sources/%s/tables/%s/spec'
     datasource_rows = '/v1/data-sources/%s/tables/%s/rows'
     driver = '/v1/system/drivers'
     driver_path = '/v1/system/drivers/%s'
+    policy_api_versions = '/'
 
     def __init__(self, **kwargs):
         super(Client, self).__init__()
@@ -142,6 +143,11 @@ class Client(object):
                                          datasource_name)
         return body
 
+    def list_datasource_actions(self, datasource_name):
+        resp, body = self.httpclient.get(self.datasource_actions %
+                                         datasource_name)
+        return body
+
     def show_datasource_schema(self, datasource_name):
         resp, body = self.httpclient.get(self.datasource_schema %
                                          datasource_name)
@@ -180,4 +186,14 @@ class Client(object):
     def show_driver(self, driver):
         resp, body = self.httpclient.get(self.driver_path %
                                          (driver))
+        return body
+
+    def request_refresh(self, driver, body=None):
+        resp, body = self.httpclient.post(self.datasource_path %
+                                          (driver) + "?action=request-refresh",
+                                          body=body)
+        return body
+
+    def list_api_versions(self):
+        resp, body = self.httpclient.get(self.policy_api_versions)
         return body

@@ -82,7 +82,6 @@ class TestListDatasourceStatus(common.TestCongressBase):
         ]
         response = {'last_updated': "now",
                     'last_error': "None"}
-
         lister = mock.Mock(return_value=response)
         self.app.client_manager.congressclient.list_datasource_status = lister
         self.app.client_manager.congressclient.list_datasources = mock.Mock()
@@ -97,6 +96,37 @@ class TestListDatasourceStatus(common.TestCongressBase):
         self.assertEqual([('last_error', 'last_updated'),
                           ('None', 'now')],
                          result)
+
+
+class TestShowDatasourceActions(common.TestCongressBase):
+    def test_show_datasource_actions(self):
+        datasource_name = 'fake'
+        arglist = [
+            datasource_name
+        ]
+        verifylist = [
+            ('datasource_name', datasource_name)
+        ]
+        response = {
+            "results":
+                [{'name': 'execute',
+                  'args': [{"name": "name", "description": "None"},
+                           {"name": "status", "description": "None"},
+                           {"name": "id", "description": "None"}],
+                  'description': 'execute action'}]
+        }
+        lister = mock.Mock(return_value=response)
+        self.app.client_manager.congressclient.list_datasource_actions = lister
+        self.app.client_manager.congressclient.list_datasources = mock.Mock()
+        cmd = datasource.ShowDatasourceActions(self.app, self.namespace)
+
+        parsed_args = self.check_parser(cmd, arglist, verifylist)
+        with mock.patch.object(utils, "get_resource_id_from_name",
+                               return_value="id"):
+            result = cmd.take_action(parsed_args)
+
+        lister.assert_called_once_with("id")
+        self.assertEqual(['action', 'args', 'description'], result[0])
 
 
 class TestShowDatasourceSchema(common.TestCongressBase):
@@ -203,6 +233,32 @@ class TestListDatasourceRows(common.TestCongressBase):
         self.assertEqual(['ID', 'name'], result[0])
 
 
+class TestShowDatasourceTable(common.TestCongressBase):
+    def test_show_datasource_table(self):
+        datasource_name = 'neutron'
+        table_id = 'ports'
+        arglist = [
+            datasource_name, table_id
+        ]
+        verifylist = [
+            ('datasource_name', datasource_name),
+            ('table_id', table_id)
+        ]
+        response = {
+            'id': 'ports',
+        }
+        lister = mock.Mock(return_value=response)
+        client = self.app.client_manager.congressclient
+        client.show_datasource_table = lister
+        cmd = datasource.ShowDatasourceTable(self.app, self.namespace)
+        expected_ret = [('id',), ('ports',)]
+
+        parsed_args = self.check_parser(cmd, arglist, verifylist)
+        result = list(cmd.take_action(parsed_args))
+
+        self.assertEqual(expected_ret, result)
+
+
 class TestCreateDatasource(common.TestCongressBase):
 
     def test_create_datasource(self):
@@ -265,4 +321,24 @@ class TestDeleteDatasourceDriver(common.TestCongressBase):
                                return_value="id"):
             result = cmd.take_action(parsed_args)
         mocker.assert_called_with("id")
+        self.assertEqual(None, result)
+
+
+class TestDatasourceRequestRefresh(common.TestCongressBase):
+
+    def test_datasource_request_refresh(self):
+        driver = 'neutronv2'
+
+        arglist = [driver]
+        verifylist = [('datasource', driver), ]
+
+        mocker = mock.Mock(return_value=None)
+        self.app.client_manager.congressclient.request_refresh = mocker
+        self.app.client_manager.congressclient.list_datasources = mock.Mock()
+        cmd = datasource.DatasourceRequestRefresh(self.app, self.namespace)
+        parsed_args = self.check_parser(cmd, arglist, verifylist)
+        with mock.patch.object(utils, "get_resource_id_from_name",
+                               return_value="id"):
+            result = cmd.take_action(parsed_args)
+        mocker.assert_called_with("id", {})
         self.assertEqual(None, result)
