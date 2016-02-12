@@ -1,3 +1,10 @@
+python-congressclient (1.2.0-1ubuntu1) UNRELEASED; urgency=medium
+
+  * d/control, d/rules, d/python-congressclient.doc-base: Add
+    python-congressclient-doc binary package.
+
+ -- Corey Bryant <corey.bryant@canonical.com>  Fri, 12 Feb 2016 10:31:43 -0500
+
 python-congressclient (1.2.0-1) unstable; urgency=medium
 
   * New upstream release.
