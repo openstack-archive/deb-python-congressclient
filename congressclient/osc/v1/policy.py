@@ -14,17 +14,17 @@
 
 """Policy action implemenations"""
 
-import logging
 import sys
 
 from cliff import command
 from cliff import lister
 from cliff import show
-from keystoneclient.openstack.common.apiclient import exceptions
+from keystoneclient import exceptions
+from oslo_log import log as logging
+from oslo_serialization import jsonutils
 import six
 
 from congressclient.common import utils
-from congressclient.openstack.common import jsonutils
 
 
 def _format_rule(rule):
@@ -271,7 +271,9 @@ class CreatePolicy(show.ShowOne):
         parser.add_argument(
             '--abbreviation',
             metavar="<abbreviation>",
-            help="Policy abbreviation (used in traces)")
+            help="Policy abbreviation (used in traces). The length of the "
+                 "string must be equal to or less than 5 characters. Defaults "
+                 "to the first five characters of policy_name if not set.")
         parser.add_argument(
             '--kind',
             metavar="<kind>",

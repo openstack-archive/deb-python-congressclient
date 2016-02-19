@@ -14,11 +14,10 @@
 
 """Datasource action implemenations"""
 
-import logging
-
 from cliff import command
 from cliff import lister
 from cliff import show
+from oslo_log import log as logging
 import six
 
 from congressclient.common import parseractions
@@ -38,7 +37,7 @@ class ListDatasources(lister.Lister):
         client = self.app.client_manager.congressclient
         data = client.list_datasources()['results']
         columns = ['id', 'name', 'enabled', 'type', 'config']
-        formatters = {'Datasources': utils.format_list}
+        formatters = {'config': utils.format_dict}
         return (columns,
                 (utils.get_dict_properties(s, columns,
                                            formatters=formatters)
