@@ -1,6 +1,7 @@
 python-congressclient (1.2.2-1) UNRELEASED; urgency=medium
 
   * New upstream release.
+  * d/control: Align depends with upstream.
 
  -- David Della Vecchia <ddv@canonical.com>  Fri, 19 Feb 2016 13:41:09 -0500
 
