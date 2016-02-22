@@ -1,9 +1,13 @@
 python-congressclient (1.2.2-1) UNRELEASED; urgency=medium
 
+  [ David Della Vecchia ]
   * New upstream release.
   * d/control: Align depends with upstream.
 
- -- David Della Vecchia <ddv@canonical.com>  Fri, 19 Feb 2016 13:41:09 -0500
+  [ Corey Bryant ]
+  * d/control: Update uploaders.
+
+ -- Corey Bryant <corey.bryant@canonical.com>  Mon, 22 Feb 2016 09:50:54 -0500
 
 python-congressclient (1.2.0-2) UNRELEASED; urgency=medium
 
