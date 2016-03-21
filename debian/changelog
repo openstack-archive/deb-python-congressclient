@@ -17,6 +17,7 @@ python-congressclient (1.2.3-1) experimental; urgency=medium
   * New upstream release.
   * Fixed (build-)depends for this release.
   * Standards-Version: 3.9.7 (no change).
+  * Fixed debian/copyright ordering.
 
  -- Thomas Goirand <zigo@debian.org>  Mon, 21 Mar 2016 11:45:30 +0100
 
