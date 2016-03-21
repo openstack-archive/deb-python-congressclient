@@ -1,4 +1,4 @@
-python-congressclient (1.2.2-1) UNRELEASED; urgency=medium
+python-congressclient (1.2.3-1) experimental; urgency=medium
 
   [ David Della Vecchia ]
   * New upstream release.
@@ -13,7 +13,10 @@ python-congressclient (1.2.2-1) UNRELEASED; urgency=medium
   [ Ondřej Nový ]
   * Fixed VCS URLs (https).
 
- -- Corey Bryant <corey.bryant@canonical.com>  Mon, 22 Feb 2016 11:03:51 -0500
+  [ Thomas Goirand ]
+  * New upstream release.
+
+ -- Thomas Goirand <zigo@debian.org>  Mon, 21 Mar 2016 11:45:30 +0100
 
 python-congressclient (1.2.0-1) unstable; urgency=medium
 
