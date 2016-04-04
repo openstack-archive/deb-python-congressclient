@@ -1,3 +1,9 @@
+python-congressclient (1.2.3-2) unstable; urgency=medium
+
+  * Uploading to unstable.
+
+ -- Thomas Goirand <zigo@debian.org>  Mon, 04 Apr 2016 13:21:36 +0000
+
 python-congressclient (1.2.3-1) experimental; urgency=medium
 
   [ David Della Vecchia ]
