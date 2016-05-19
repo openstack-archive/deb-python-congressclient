@@ -2,6 +2,7 @@ python-congressclient (1.2.3-3) UNRELEASED; urgency=medium
 
   * Standards-Version is 3.9.8 now (no change)
   * d/rules: Removed UPSTREAM_GIT with default value
+  * d/copyright: Changed source URL to new one
 
  -- Ondřej Nový <novy@ondrej.org>  Sat, 09 Apr 2016 19:26:19 +0200
 
