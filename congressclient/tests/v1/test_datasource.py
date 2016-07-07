@@ -29,8 +29,8 @@ class TestListDatasources(common.TestCongressBase):
             "results": [{"id": datasource_name,
                          "name": "my_name",
                          "enabled": "True",
-                         "type": "None",
-                         "config": "None"}]
+                         "driver": "driver1",
+                         "config": None}]
         }
         lister = mock.Mock(return_value=response)
         self.app.client_manager.congressclient.list_datasources = lister
@@ -40,8 +40,14 @@ class TestListDatasources(common.TestCongressBase):
         result = cmd.take_action(parsed_args)
 
         lister.assert_called_with()
-        self.assertEqual(['id', 'name', 'enabled', 'type', 'config'],
+        self.assertEqual(['id', 'name', 'enabled', 'driver', 'config'],
                          result[0])
+        for row in result[1]:
+            self.assertEqual(datasource_name, row[0])
+            self.assertEqual("my_name", row[1])
+            self.assertEqual("True", row[2])
+            self.assertEqual("driver1", row[3])
+            self.assertEqual("None", row[4])
 
     def test_list_datasource_output_not_unicode(self):
         # response json string is converted to dict by oslo jsonutils.loads(),
@@ -50,7 +56,7 @@ class TestListDatasources(common.TestCongressBase):
             u"results": [{u"id": u"neutron",
                           u"name": u"my_name",
                           u"enabled": True,
-                          u"type": None,
+                          u"driver": 'driver1',
                           u"config": {
                               u'username': u'admin',
                               u'tenant_name': u'admin',
@@ -67,7 +73,7 @@ class TestListDatasources(common.TestCongressBase):
         result = cmd.take_action(parsed_args)
 
         lister.assert_called_with()
-        self.assertEqual(['id', 'name', 'enabled', 'type', 'config'],
+        self.assertEqual(['id', 'name', 'enabled', 'driver', 'config'],
                          result[0])
         # get 'config' column
         config = list(result[1])[0][-1]
