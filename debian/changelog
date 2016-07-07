@@ -8,6 +8,7 @@ python-congressclient (1.3.0-1) UNRELEASED; urgency=medium
   [ Corey Bryant ]
   * New upstream release.
   * d/gbp.conf: Update debian-branch for Newton.
+  * d/control: Align (Build-)Depends with upstream.
 
  -- Corey Bryant <corey.bryant@canonical.com>  Thu, 07 Jul 2016 14:11:48 -0400
 
