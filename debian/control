@@ -54,8 +54,8 @@ Build-Depends-Indep: python-babel,
                      subunit,
                      testrepository,
 Standards-Version: 3.9.8
-Vcs-Browser: https://git.openstack.org/cgit/openstack/deb-python-congressclient
-Vcs-Git: https://git.openstack.org/openstack/deb-python-congressclient
+Vcs-Browser: https://git.openstack.org/cgit/openstack/deb-python-congressclient?h=debian%2Fnewton
+Vcs-Git: https://git.openstack.org/openstack/deb-python-congressclient -b debian/newton
 Homepage: https://github.com/stackforge/python-congressclient
 
 Package: python-congressclient
