@@ -1,7 +1,0 @@
-[run]
-branch = True
-source = congressclient
-omit = congressclient/tests/*
-
-[report]
-ignore_errors = True
